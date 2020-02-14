@@ -23,7 +23,7 @@ class Wallet
 
 end
 
-tester = Wallet.new
+# tester = Wallet.new
 
 
 # wallet = wallet.tester
