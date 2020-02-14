@@ -27,7 +27,7 @@ tester = Wallet.new
 
 
 # wallet = wallet.tester
-tester.add_money(10)
-tester.check_wallet
-tester.subtract_money(5)
-tester.check_wallet
+# tester.add_money(10)
+# tester.check_wallet
+# tester.subtract_money(5)
+# tester.check_wallet
