@@ -13,7 +13,7 @@
   end
  
   def shuffle_cards
-   @cards.shufflegit 
+   @cards.shuffle
   end
   
   def generate_deck
