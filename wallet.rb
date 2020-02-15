@@ -18,7 +18,7 @@ class Wallet
   end
 
   def check_wallet
-    puts @wallet.to_i
+    puts "You have $#{@wallet.to_i} in your wallet."
   end
 
 end

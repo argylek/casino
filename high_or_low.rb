@@ -1,50 +1,156 @@
 require_relative 'deck_of_cards'
+require_relative 'wallet'
+# @wallet = Wallet.new
 
 class HighLow
+  attr_accessor :wallet, :wins, :losses
   def initialize(wallet_value)
     @wallet = wallet_value
     @deck = Deck.new
+    @total_bet = 0
+    @house_bet = 0
+    @user_bet = 0
+    game_main
   end
-
-  def shuffle_and_cut
-    @deck.shuffle
-    @deck.cut
-  end
-
-  def game_start
-    @card_face_down = @deck.draw_card
-    down = @card_face_down
-    puts "#{down.value}#{down.suit}#{down.rank}"
-    @card_face_up = @deck.draw_card
-    up = @card_face_up
-    puts "#{up.value}, #{up.suit}, #{up.rank}"
-  end
-
-  def player_guess
-  end
-
-  def player_bet
-  end
-
-  def house_match_bet
-  end
-
-  def double_or_nothing
-  end
-
-
-
-  def game
+  def game_main
+    loop do
+      game_menu
+      game_choice = gets.chomp.to_i
+      case game_choice
+      when 1
+        game_start
+        player_bet
+        house_match_bet
+        player_guess
+      when 2
+        @wallet.check_wallet
+      when 3
+        break
+      else
+        puts "That wasn't one of the options"
+      end
+    end
   end
 
   def game_menu
+    # puts "Welcome #{player_name} to the High or Low game!"
+    puts "1) Play High or Low"
+    puts "2) Check my Current Balance"
+    puts "3) Go back to the Casino Floor"
   end
+  def card_setup
+    @deck.shuffle
+    down = @deck.draw_card
+    up = @deck.draw_card
+    @up_card = "#{up.rank}#{up.suit}"
+    @down_card = "#{down.rank}#{down.suit}"
+    @up_value = up.value
+    @down_value = down.value
+    @cards = "The face down card was:#{@up_card}, the face up card was:#{@down_card}."
+  end
+  def game_start
+    card_setup
+    # puts "down is #{down.rank}#{down.suit}" -- this is here for test purposes to make sure the cards are different
+    puts "Two cards are on the table."
+    puts "One card face-down,"
+    puts "and one face-up is the #{@up_card}"
+  end
+  private
+  def house_match_bet
+    @house_bet = @user_bet
+    @total_bet = @house_bet + @user_bet
+    puts "The house has matched your bet of $#{@user_bet}. As is customary."
+    puts "There is $#{@total_bet} on the table."
+    puts "ALL BETS ARE CLOSED"
+  end
+  def double_or_nothing
+  end
+  def player_bet
+    wallet = @wallet
+    bet_break = false
+    until bet_break == true
+      puts "Your wallet currently has $#{wallet}"
+      puts "How much would you like to bet?"
+      @user_bet = gets.chomp.to_i
+      if @user_bet > wallet
+        puts "You don't have that much to bet."
+      else
+        @wallet = wallet -= @user_bet
+        puts "You have $#{@user_bet} on the table."
+        bet_break = true
+      end
+    end
+  end
+
+  def player_menu
+    puts "Moment of truth -- "
+    puts "Remember your card is the #{@up_card}"
+    puts "Is your card higher or lower than the face down card?"
+    puts "1) Higher"
+    puts "2) Lower"
+  end
+
+  def higher_win_conditions
+    if @down_value == @up_value
+      puts "#{@cards} They were equal, you win!"
+      double_or_nothing
+      @wallet = @total_bet + @wallet
+    elsif @down_value < @up_value
+      puts "#{@cards} You lose!"
+    elsif @down_value > @up_value
+      puts "#{@cards} You win!"
+      double_or_nothing
+      @wallet = @total_bet + @wallet
+    end
+  end
+
+  def lower_win_conditions
+    if @down_value == @up_value
+      puts "#{@cards} They were equal, you win!"
+      double_or_nothing
+      @wallet = @total_bet + @wallet
+    elsif @down_value > @up_value
+      puts "#{@cards} You lose!"
+      @wallet = @wallet - @total_bet
+    elsif @down_value < @up_value 
+      puts "#{@cards} You win!"
+      double_or_nothing
+      @wallet = @total_bet + @wallet
+    end
+  end
+
+  def player_guess
+    break_condition = false
+    until break_condition == true
+    player_menu
+    guess = gets.chomp.to_i
+    if guess == 1
+      @user_guess = true
+      higher_win_conditions
+      break_condition = true
+      puts @wallet
+    elsif guess == 2
+      @user_guess = false
+      lower_win_conditions
+      break_condition = true
+      puts @wallet
+    else
+      puts "That wasn't a choice, lets try that again."
+    end
+  end
+end
+def user_win
+end
+def user_lose
+end
+def play_again?
+end
 
 end
 
 test = HighLow.new(500)
 
-test.game_start
+# test.game
 
 # Hi-Lo, or High-Low, is a fairly simple card game. 
 # It uses a standard deck of 52 cards, and it has 

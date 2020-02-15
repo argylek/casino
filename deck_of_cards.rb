@@ -12,7 +12,7 @@
     generate_deck
   end
  
-  def shuffle_cards
+  def shuffle
    @cards.shuffle
   end
 
@@ -37,7 +37,8 @@
    end
 
    def draw_card
-    your_card = @cards.shift
+    your_card = @cards.sample
+    @cards.delete(your_card)
     return your_card
    end
  end
