@@ -27,19 +27,23 @@ class CasinoMenus
     puts "Which game would you like to play?"
     puts "Slots or High and Low"
     puts "Press 1 for Slots or Press 2 for High and Low"
+    puts "Press 3 to exit the app"
     @game_choice = gets.to_i
-      case choice 
+      case @game_choice 
         when 1
           # link to Slots class
         when 2
           # link to High and Low class
+        when 3
+          puts "Come gamble again soon!"
+          exit
         else
           puts "Invalid choice. Please try again"
       end
-      
-    # app_menu -- this brings you back up to the method app menu
-    
-  end
+      app_menu
+    end
+
+  
 
 end
 
