@@ -18,7 +18,11 @@ class Wallet
   end
 
   def check_wallet
-    puts @wallet.to_i
+    @wallet.to_i
+  end
+
+  def starting_wallet
+    @wallet = gets.to_i
   end
 
 end

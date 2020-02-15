@@ -1,5 +1,49 @@
 require_relative 'dice'
 require_relative 'deck_of_cards'
+require_relative 'wallet'
 
 dice = Dice.new
 deck = Deck.new
+
+
+class CasinoMenus
+
+  def initialize 
+    @wallet = Wallet.new
+  end  
+  
+  
+  def app_intro_menu
+    puts "Welcome to the Ruby Casino!"
+    puts "What is your name?"
+    @gambler_name = gets.strip
+    puts "Okay #{@gambler_name}. How much money would you like to gamble with tonight?"
+    @wallet.starting_wallet
+    puts "Awesome! You now have $#{@wallet.wallet}.00 in your wallet."
+  end
+    
+  def app_menu 
+    puts "#{@gambler_name} #{@wallet.check_wallet}"
+    puts "Which game would you like to play?"
+    puts "Slots or High and Low"
+    puts "Press 1 for Slots or Press 2 for High and Low"
+    @game_choice = gets.to_i
+      case choice 
+        when 1
+          # link to Slots class
+        when 2
+          # link to High and Low class
+        else
+          puts "Invalid choice. Please try again"
+      end
+      
+    # app_menu -- this brings you back up to the method app menu
+    
+  end
+
+end
+
+menu = CasinoMenus.new
+
+menu.app_intro_menu
+menu.app_menu
