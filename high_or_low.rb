@@ -10,9 +10,8 @@ class HighLow
     @total_bet = 0
     @house_bet = 0
     @user_bet = 0
-    game_main
   end
-  def game_main
+  def game
     loop do
       game_menu
       game_choice = gets.chomp.to_i
@@ -94,28 +93,27 @@ class HighLow
     if @down_value == @up_value
       puts "#{@cards} They were equal, you win!"
       double_or_nothing
-      @wallet = @total_bet + @wallet
+      user_win
     elsif @down_value < @up_value
       puts "#{@cards} You lose!"
+      user_lose
     elsif @down_value > @up_value
       puts "#{@cards} You win!"
       double_or_nothing
-      @wallet = @total_bet + @wallet
+      user_win
     end
   end
 
   def lower_win_conditions
     if @down_value == @up_value
       puts "#{@cards} They were equal, you win!"
-      double_or_nothing
-      @wallet = @total_bet + @wallet
+      user_win
     elsif @down_value > @up_value
       puts "#{@cards} You lose!"
-      @wallet = @wallet - @total_bet
+      user_lose
     elsif @down_value < @up_value 
       puts "#{@cards} You win!"
-      double_or_nothing
-      @wallet = @total_bet + @wallet
+      user_win
     end
   end
 
@@ -127,6 +125,7 @@ class HighLow
     if guess == 1
       @user_guess = true
       higher_win_conditions
+      double_or_nothing
       break_condition = true
       puts @wallet
     elsif guess == 2
@@ -140,8 +139,10 @@ class HighLow
   end
 end
 def user_win
+  @wallet = @total_bet + @wallet
 end
 def user_lose
+  @wallet = @wallet - @total_bet
 end
 def play_again?
 end
@@ -149,6 +150,7 @@ end
 end
 
 test = HighLow.new(500)
+test.game
 
 # test.game
 
