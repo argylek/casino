@@ -7,7 +7,7 @@
   # deck = Deck.new
   def initialize
     @ranks = %w(A 2 3 4 5 6 7 8 9 10 J Q K)
-    @suits = %w(Spades Diamonds Clubs Hearts)
+    @suits = %w(♠ ♦ ♣ ♥)
     @cards = []
     generate_deck
   end
@@ -15,24 +15,33 @@
   def shuffle_cards
    @cards.shuffle
   end
+
+  def cut
+    @cards.rotate! @cards.count / 2
+  end
   
   def generate_deck
-    @suits.each do |suit|
-      @ranks.size.times do |i|
-        # Ternary Operator
-        color = (suit == 'Spades' || suit == 'Clubs') ? 'Black' : 'Red' 
-        @cards << Card.new(@ranks[i], suit, color)
+    @ranks.each_with_index do |rank, index|
+      @suits.each do |suit|
+          # Ternary Operator
+          color = (suit == 'Spades' || suit == 'Clubs') ? 'Black' : 'Red' 
+          @cards << Card.new(index + 1, rank, suit, color)
       end
     end
   end
  
    def display_cards
      @cards.shuffle.each do |card|
-       puts "#{card.rank} #{card.suit} (#{card.color})"
+       puts " #{card.value} #{card.rank} #{card.suit} (#{card.color})"
      end
+   end
+
+   def draw_card
+    your_card = @cards.shift
+    return your_card
    end
  end
 
-#  Example:
-# # Instantiate a new deck
-# d = Deck.new
+#  deck = Deck.new
+#  deck.display_cards
+#  deck.cut
