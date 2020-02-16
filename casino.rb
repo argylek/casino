@@ -1,22 +1,25 @@
 require_relative 'wallet'
 require_relative 'slot_machine'
+require_relative 'high_or_low'
+require_relative 'player'
 
 
 
 class CasinoMenus
+  
+
   def initialize 
-    @wallet = Wallet.new
-    @slots = Slots.new
+    app_intro_menu
+    
   end  
+
+  @slots = Slots.new
+  @highlow = HighLow.new
+  @player = Player.new
   
   
   def app_intro_menu
-    puts "Welcome to the Ruby Casino!"
-    puts "What is your name?"
-    @gambler_name = gets.strip
-    puts "Okay #{@gambler_name}. How much money would you like to gamble with tonight?"
-    @wallet.starting_wallet
-    puts "Awesome! You now have $#{@wallet.wallet}.00 in your wallet."
+    @player.start
   end
     
   def app_menu

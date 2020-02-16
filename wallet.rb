@@ -6,8 +6,8 @@ class Wallet
   end
 
   def add_money(ammount)
-    wallet = @wallet.to_i
-    @wallet =  wallet + ammount.to_i
+    current_wallet = @wallet.to_i
+    @wallet =  current_wallet + ammount.to_i
   end
 
   def subtract_money(ammount)
@@ -19,13 +19,27 @@ class Wallet
     puts "You have $#{@wallet.to_i} in your wallet."
   end
 
+  def starting_wallet(money_to_add)
+    @wallet = add_money(money_to_add)
+  end
+
+  def back_to_wallet(ammount_to_add)
+    @wallet = add_money(ammount_to_add)
+    if ammount_to_add >= 1
+      puts "You've added #{ammount_to_add} to your wallet!"
+      check_wallet
+    elsif @total_bet == 0
+      check_wallet
+    else
+      puts "wallet error"
+    end
+  end
+
 end
 
-# tester = Wallet.new
-
-
-# wallet = wallet.tester
-# tester.add_money(10)
-# tester.check_wallet
-# tester.subtract_money(5)
-# tester.check_wallet
+# wallet = Wallet.new
+# wallet.starting_wallet(500)
+# wallet.check_wallet
+# wallet.subtract_money(200)
+# wallet.check_wallet
+# wallet.back_to_wallet(300)

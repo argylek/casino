@@ -3,15 +3,13 @@ require_relative 'wallet'
 class HighLow
   attr_accessor :wallet
   def initialize
-    @wallet = Wallet.new
-    @wallet = @wallet.wallet
+    @wallet = wallet
     @deck = Deck.new
     @total_bet = 0
     @house_bet = 0
     @user_bet = 0
     @double_or_nothing = false
     @play_again = true
-    main_menu
   end
 
   def main_menu
@@ -25,7 +23,7 @@ class HighLow
           high_low_game
           end
           @double_or_nothing = false
-          back_to_wallet
+          @wallet.back_to_wallet(@total_bet)
         when 2
           puts @wallet.check_wallet
         when 3
@@ -83,10 +81,10 @@ class HighLow
   end
 
   def player_bet
-    wallet = @wallet.wallet
+    # wallet = @wallet.wallet
     bet_break = false
     until bet_break == true
-      puts "Your wallet currently has $#{wallet}"
+      puts "Your wallet currently has $#{@wallet.wallet}"
       puts "How much would you like to bet?"
       @user_bet = gets.chomp.to_i
       if @user_bet > wallet
@@ -158,19 +156,6 @@ class HighLow
     end
   end
 
-  def back_to_wallet
-    wallet = @wallet.wallet
-    @wallet.wallet = wallet + @total_bet
-    if @total_bet >= 1
-      puts "You've added #{@total_bet} to your wallet!"
-      @wallet.check_wallet
-    elsif @total_bet == 0
-      @wallet.check_wallet
-    else
-      puts "wallet error"
-    end
-  end
-
   def user_win
     puts "You currently have won $#{@total_bet}."
     double_or_nothing
@@ -212,6 +197,9 @@ class HighLow
 end
 
 
-# @wallet = 0
-# puts @wallet
+wallet_start = Wallet.new
+wallet_start.starting_wallet(500)
+wallet_start.check_wallet
 test = HighLow.new
+test.main_menu
+wallet.check_wallet
