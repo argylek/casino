@@ -1,15 +1,18 @@
 require_relative 'deck_of_cards'
 require_relative 'wallet'
+require_relative 'player'
+
 class HighLow
-  attr_accessor :wallet
-  def initialize
-    @wallet = wallet
+  attr_accessor :player, :wallet
+
+  def initialize(player)
     @deck = Deck.new
     @total_bet = 0
     @house_bet = 0
     @user_bet = 0
     @double_or_nothing = false
     @play_again = true
+    @player = player
   end
 
   def main_menu
@@ -23,11 +26,11 @@ class HighLow
           high_low_game
           end
           @double_or_nothing = false
-          @wallet.back_to_wallet(@total_bet)
+          @player.wallet = Wallet.back_to_wallet(@total_bet)
         when 2
-          puts @wallet.check_wallet
+          puts Wallet.check_wallet
         when 3
-          exit
+          break
         else
           puts "That wasn't one of the options"
       end
@@ -42,7 +45,7 @@ class HighLow
         player_bet
         house_match_bet
       elsif @double_or_nothing == true
-        puts "double or nothing flag is working"
+        # puts "double or nothing flag is working"
       else
         puts "Error - double_or_nothing flag is messed up"
       end
@@ -81,16 +84,16 @@ class HighLow
   end
 
   def player_bet
-    # wallet = @wallet.wallet
+    wallet = @player.wallet
     bet_break = false
     until bet_break == true
-      puts "Your wallet currently has $#{@wallet.wallet}"
+      puts "Your wallet currently has $#{wallet}"
       puts "How much would you like to bet?"
       @user_bet = gets.chomp.to_i
       if @user_bet > wallet
         puts "You don't have that much to bet."
       else
-        @wallet.wallet = wallet -= @user_bet
+        @player.wallet = Wallet.subtract(@user_bet)
         puts "You have $#{@user_bet} on the table."
         bet_break = true
       end
@@ -197,9 +200,7 @@ class HighLow
 end
 
 
-wallet_start = Wallet.new
-wallet_start.starting_wallet(500)
-wallet_start.check_wallet
-test = HighLow.new
-test.main_menu
-wallet.check_wallet
+# player = Player.new
+# test = HighLow.new(player)
+# test.main_menu
+# Wallet.check_wallet
