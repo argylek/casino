@@ -16,11 +16,7 @@ class Wallet
   end
 
   def check_wallet
-    @wallet.to_i
-  end
-
-  def starting_wallet
-    @wallet = gets.to_i
+    puts "You have $#{@wallet.to_i} in your wallet."
   end
 
 end
