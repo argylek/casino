@@ -1,4 +1,3 @@
-require_relative 'wallet'
 
 class Slots
 
