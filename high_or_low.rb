@@ -1,17 +1,18 @@
 require_relative 'deck_of_cards'
 require_relative 'wallet'
+require_relative 'player'
+
 class HighLow
-  attr_accessor :wallet
-  def initialize
-    @wallet = Wallet.new
-    @wallet = @wallet.wallet
+  attr_accessor :player
+
+  def initialize(player)
     @deck = Deck.new
     @total_bet = 0
     @house_bet = 0
     @user_bet = 0
     @double_or_nothing = false
     @play_again = true
-    main_menu
+    @player = player
   end
 
   def main_menu
@@ -25,11 +26,11 @@ class HighLow
           high_low_game
           end
           @double_or_nothing = false
-          back_to_wallet
+          @player.wallet = Wallet.back_to_wallet(@total_bet)
         when 2
-          puts @wallet.check_wallet
+          puts Wallet.check_wallet
         when 3
-          exit
+          break
         else
           puts "That wasn't one of the options"
       end
@@ -44,7 +45,7 @@ class HighLow
         player_bet
         house_match_bet
       elsif @double_or_nothing == true
-        puts "double or nothing flag is working"
+        # puts "double or nothing flag is working"
       else
         puts "Error - double_or_nothing flag is messed up"
       end
@@ -83,7 +84,7 @@ class HighLow
   end
 
   def player_bet
-    wallet = @wallet.wallet
+    wallet = @player.wallet
     bet_break = false
     until bet_break == true
       puts "Your wallet currently has $#{wallet}"
@@ -92,7 +93,7 @@ class HighLow
       if @user_bet > wallet
         puts "You don't have that much to bet."
       else
-        @wallet.wallet = wallet -= @user_bet
+        @player.wallet = Wallet.subtract(@user_bet)
         puts "You have $#{@user_bet} on the table."
         bet_break = true
       end
@@ -158,19 +159,6 @@ class HighLow
     end
   end
 
-  def back_to_wallet
-    wallet = @wallet.wallet
-    @wallet.wallet = wallet + @total_bet
-    if @total_bet >= 1
-      puts "You've added #{@total_bet} to your wallet!"
-      @wallet.check_wallet
-    elsif @total_bet == 0
-      @wallet.check_wallet
-    else
-      puts "wallet error"
-    end
-  end
-
   def user_win
     puts "You currently have won $#{@total_bet}."
     double_or_nothing
@@ -212,6 +200,7 @@ class HighLow
 end
 
 
-# @wallet = 0
-# puts @wallet
-test = HighLow.new
+# player = Player.new
+# test = HighLow.new(player)
+# test.main_menu
+# Wallet.check_wallet

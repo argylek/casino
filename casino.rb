@@ -1,13 +1,24 @@
 require_relative 'player'
 require_relative 'slot_machine'
-
+require_relative 'high_or_low'
+require_relative 'player'
 
 
 class CasinoMenus
-  attr_accessor :player, :wallet
+  
 
   def initialize 
-    game_options
+    app_intro_menu
+    
+  end  
+
+  @slots = Slots.new
+  @highlow = HighLow.new
+  @player = Player.new
+  
+  
+  def app_intro_menu
+    @player.start
   end
     
   def app_menu
