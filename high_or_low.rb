@@ -2,9 +2,9 @@ require_relative 'deck_of_cards'
 require_relative 'wallet'
 class HighLow
   attr_accessor :wallet
-  def initialize(wallet_test)
+  def initialize
     @wallet = Wallet.new
-    @wallet.wallet = @wallet.add_money(wallet_test)
+    @wallet = @wallet.wallet
     @deck = Deck.new
     @total_bet = 0
     @house_bet = 0
@@ -214,4 +214,4 @@ end
 
 # @wallet = 0
 # puts @wallet
-test = HighLow.new(500)
+test = HighLow.new
