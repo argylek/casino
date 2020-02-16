@@ -1,7 +1,7 @@
-
-
-
 class Slots
+
+  def initialize
+  end
   
   def slot_outcomes(row1, row2, row3)
     if row1 == row2 && row2 == row3
@@ -48,7 +48,3 @@ class Slots
       end
   end
 end
-
-stuff = Slots.new
-
-stuff.run_slots

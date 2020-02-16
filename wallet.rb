@@ -1,5 +1,3 @@
-
-
 class Wallet
   attr_accessor :wallet
 

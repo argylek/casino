@@ -1,15 +1,18 @@
 require_relative 'dice'
 require_relative 'deck_of_cards'
 require_relative 'wallet'
+require_relative 'slot_machine'
 
-dice = Dice.new
-deck = Deck.new
 
 
 class CasinoMenus
-
   def initialize 
     @wallet = Wallet.new
+    @slots = Slots.new
+    @dice = Dice.new
+    @deck = Deck.new
+    @slots = Slots.new
+    app_menu
   end  
   
   
@@ -31,7 +34,7 @@ class CasinoMenus
     @game_choice = gets.to_i
       case @game_choice 
         when 1
-          # link to Slots class
+          @slots.run_slots
         when 2
           # link to High and Low class
         when 3
@@ -42,12 +45,4 @@ class CasinoMenus
       end
       app_menu
     end
-
-  
-
 end
-
-menu = CasinoMenus.new
-
-menu.app_intro_menu
-menu.app_menu
