@@ -1,16 +1,29 @@
 class Player
-  puts
-  puts "Hello Player1, Let's get your information set up."
-  puts
-  puts "Create your own username to play:"
-  new_player_name = gets.strip
-  puts
-  puts "What is your age?"
-  new_player_age = gets.strip
-  puts
-  puts 
-  # @ << {username: new_player_name, age: new_player_age}
-  puts "Thank you! What whould you like to play?"
+  attr_accessor :name, :wallet
 
+  def initialize
+    @wallet = 1000
+    puts "******************************************"
+    puts "Hello Player1, Let's get your information set up."
+    puts "******************************************"
+    puts "What is your name?"
+    name = gets.chomp
+    @name = name
+    
+    puts "******************************************"
+    puts "What is your age?"
+    age = gets.strip.to_i
+      if age >= 21
+        puts "You're good to go!"
+      else 
+        puts "Come back when you're older, kid!"
+      end
+    puts "******************************************"
+    
+  end
+
+  def new_wallet
+    @wallet = 1000
+  end
 
 end

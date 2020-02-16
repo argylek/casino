@@ -1,49 +1,54 @@
-require_relative 'wallet'
+require_relative 'player'
 require_relative 'slot_machine'
 
 
 
 class CasinoMenus
+  attr_accessor :player, :wallet
+
   def initialize 
-    @wallet = Wallet.new
-    @slots = Slots.new
-  end  
-  
-  
-  def app_intro_menu
-    puts "Welcome to the Ruby Casino!"
-    puts "What is your name?"
-    @gambler_name = gets.strip
-    puts "Okay #{@gambler_name}. How much money would you like to gamble with tonight?"
-    @wallet.starting_wallet
-    puts "Awesome! You now have $#{@wallet.wallet}.00 in your wallet."
+    game_options
   end
     
   def app_menu
-    is_running = true
-    while is_running == true
-      puts "#{@gambler_name} #{@wallet.check_wallet}"
+    @player = Player.new
+    puts "Welcome to the Casino floor #{@player.name}!"
+    game_options
+  end
+    
+  def game_options
+      @player.wallet
       puts "Which game would you like to play?"
       puts "Slots or High and Low"
-      puts "Press 1 for Slots or Press 2 for High and Low"
-      puts "Press 3 to exit the app"
-      @game_choice = gets.to_i
-        case @game_choice 
-          when 1
-            @slots.run_slots
-          when 2
-            # link to High and Low class
-          when 3
-            puts "Come gamble again soon!"
-            is_running = false
-          else
-            puts "Invalid choice. Please try again"
+      puts "Press 1 for Slots" 
+      puts "Press 2 for High and Low"
+      puts "Press 3 to reload your wallet"
+      puts "Press 4 to view current wallet amount"
+      puts "Press 5 to exit the app"
+      user_selection
+  end
+  
+  def user_selection
+      game_choice = gets.strip.to_i
+      case game_choice 
+        when 1
+          Slots.new(player)
+        when 2
+          puts "link to High and Low class here"
+        when 3
+          puts "Here's a fresh wallet!"
+          @player.new_wallet
+        when 4
+          puts "You have $#{@player.wallet}.00 remaining"
+        when 5
+          puts "Come gamble again soon!"
+          exit
+        else
+          puts "Invalid choice. Please try again"
+          app_menu
         end
-      end
+      game_options
     end
 end
 
-app = CasinoMenus.new
-
-app.app_intro_menu
-app.app_menu
+CasinoMenus.new
