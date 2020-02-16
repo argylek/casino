@@ -4,20 +4,18 @@ class Player
   attr_accessor :wallet, :player_name, :player_age
 
   def initialize
-
+    start
   end
 
 
   def start
     puts "Welcome to the Ruby Casino!"
-    player_name
-    player_age
-    player_wallet
-    @wallet = Wallet.new
-    
+    player_name_start
+    player_age_start
+    player_wallet_start
   end
 
-  def player_name
+  def player_name_start
     puts
     puts "Hello, Let's get your information set up."
     puts
@@ -25,7 +23,7 @@ class Player
     @player_name = gets.strip
   end
 
-  def player_age
+  def player_age_start
     puts
     puts "What is your age?"
     @player_age = gets.strip
@@ -33,14 +31,12 @@ class Player
   # @ << {username: new_player_name, age: new_player_age}
   end
 
-  def player_wallet
-    # puts "How much money are you starting with to play today?"
-    # @user_wallet = gets.chomp.to_i
-    @wallet.starting_wallet(user_wallet)
-    puts "Awesome! You now have $#{@wallet.wallet}.00 in your wallet."
+  def player_wallet_start
+    @bankroll = Wallet.new
+    puts "How much money are you starting with to play today?"
+    user_wallet = gets.chomp.to_i
+    @wallet = @bankroll.starting_wallet(user_wallet)
+    puts "Awesome! You now have $#{@bankroll.wallet} in your wallet."
   end
-
-  
-
 
 end
