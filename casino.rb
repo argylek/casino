@@ -11,31 +11,34 @@ class CasinoMenus
   def initialize 
     app_intro_menu
     
-  end  
-
-  @slots = Slots.new
-  @highlow = HighLow.new
+  end
+  
   @player = Player.new
   
   
   def app_intro_menu
     @player.start
   end
-    
   def app_menu
+    puts "#{@player.player_name} #{Wallet.check_wallet}"
+    puts "Which game would you like to play?"
+    puts "1) Slots!"
+    puts "2) High or Low"
+    puts "3) Exit the Casino"
+  end
+    
+  def app
     is_running = true
     while is_running == true
-      puts "#{@gambler_name} #{@wallet.check_wallet}"
-      puts "Which game would you like to play?"
-      puts "Slots or High and Low"
-      puts "Press 1 for Slots or Press 2 for High and Low"
-      puts "Press 3 to exit the app"
+      app_menu
       @game_choice = gets.to_i
         case @game_choice 
           when 1
+            @slots = Slots.new
             @slots.run_slots
           when 2
-            # link to High and Low class
+            highlow = HighLow.new(@player)
+            highlow.main_menu
           when 3
             puts "Come gamble again soon!"
             is_running = false
@@ -49,4 +52,4 @@ end
 app = CasinoMenus.new
 
 app.app_intro_menu
-app.app_menu
+app.app

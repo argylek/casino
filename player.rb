@@ -26,8 +26,15 @@ class Player
   def player_age_start
     puts
     puts "What is your age?"
-    @player_age = gets.strip
-    puts
+    @player_age = gets.chomp.to_i
+    if @player_age >= 21
+      
+    elsif @player_age <= 20
+      puts "I think you're too young to play"
+      exit
+    else
+      puts "Error: Age error"
+    end
   # @ << {username: new_player_name, age: new_player_age}
   end
 
@@ -36,7 +43,7 @@ class Player
     # puts "How much money are you starting with to play today?"
     # user_wallet = gets.chomp.to_i
     @wallet = test.starting_wallet(1000)
-    puts "Awesome! You now have $#{@wallet} in your wallet."
+    puts "Awesome #{@player_name}! You now have $#{@wallet} in your wallet."
   end
 
 end
