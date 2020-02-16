@@ -1,8 +1,7 @@
-require_relative 'wallet'
+require_relative 'player'
 require_relative 'slot_machine'
 require_relative 'high_or_low'
 require_relative 'player'
-
 
 
 class CasinoMenus
@@ -45,7 +44,7 @@ class CasinoMenus
           else
             puts "Invalid choice. Please try again"
         end
-      end
+      game_options
     end
 end
 

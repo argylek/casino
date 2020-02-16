@@ -3,7 +3,7 @@ require_relative 'wallet'
 require_relative 'player'
 
 class HighLow
-  attr_accessor :player, :wallet
+  attr_accessor :player
 
   def initialize(player)
     @deck = Deck.new
