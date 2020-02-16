@@ -45,6 +45,10 @@ class Player
     @wallet = test.starting_wallet(1000)
     puts "Awesome #{@player_name}! You now have $#{@wallet} in your wallet."
   end
+  
+  def new_wallet
+    @wallet = 1000
+  end
 
 end
 # player = Player.new
