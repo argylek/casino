@@ -26,9 +26,9 @@ class Wallet
     @wallet = Wallet.add(ammount_to_add)
     if ammount_to_add >= 1
       puts "You've added #{ammount_to_add} to your wallet!"
-      check_wallet
+      Wallet.check_wallet
     elsif ammount_to_add == 0
-      check_wallet
+      Wallet.check_wallet
     else
       puts "wallet error"
     end
