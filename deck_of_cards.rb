@@ -12,37 +12,73 @@
     generate_deck
   end
  
-  def shuffle
-   @cards.shuffle
-  end
-
-  def cut
-    @cards.rotate! @cards.count / 2
-  end
+  
   
   def generate_deck
     @ranks.each_with_index do |rank, index|
       @suits.each do |suit|
           # Ternary Operator
-          color = (suit == 'Spades' || suit == 'Clubs') ? 'Black' : 'Red' 
-          @cards << Card.new(index + 1, rank, suit, color)
+          color = (suit == '♠' || suit == '♣') ? 'Black' : 'Red'
+          value = value(rank)
+          blackjack = blackjack(rank)
+          @cards << Card.new(value, rank, suit, color, blackjack)
       end
     end
+    shuffle
+  end
+
+  def blackjack(rank)
+    if ["J", "Q", "K"].include?(rank)
+      value = 10 
+    elsif rank == "A"
+      value = 11
+    else
+      value = rank
+    end
+    return value
+  end
+
+  def value(rank)
+    if rank == "J"
+      value = 11 
+    elsif rank == "Q"
+      value = 12 
+    elsif rank =="K"
+      value = 13
+    elsif rank == "A"
+      value = 1
+    else 
+      value = rank
+    end
+    return value
   end
  
    def display_cards
-     @cards.shuffle.each do |card|
-       puts " #{card.value} #{card.rank} #{card.suit} (#{card.color})"
+     @cards.each do |card|
+       puts "Value:#{card.value} #{card.rank} #{card.suit} (#{card.color}) BlackJack Value:#{card.blackjack}"
      end
    end
 
    def draw_card
-    your_card = @cards.sample
-    @cards.delete(your_card)
-    return your_card
+    @cards.shift
+    # puts "Your card is #{card.rank} of #{card.suit}"
+   end
+
+   def cards_in_deck
+    remaining = @cards.count
+    puts "There are #{remaining} cards in the deck"
+   end
+
+   def shuffle
+    @cards.shuffle!
+   end
+ 
+   def cut
+     @cards.rotate! @cards.count / 2
    end
  end
 
 #  deck = Deck.new
-#  deck.display_cards
-#  deck.cut
+#  deck.cards_in_deck
+#  deck.draw_card
+#  deck.cards_in_deck

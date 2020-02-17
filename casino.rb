@@ -32,6 +32,7 @@ class CasinoMenus
             @slots.run_slots
           when 2
             highlow = HighLow.new(@player)
+            # highlow.main_menu
           when 3
             Wallet.check_wallet
           when 4
