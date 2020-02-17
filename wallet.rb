@@ -33,8 +33,6 @@ class Wallet
       puts "wallet error"
     end
   end
-  
-
 end
 
 # wallet = Wallet.new
