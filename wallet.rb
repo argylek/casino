@@ -21,7 +21,7 @@ class Wallet
   end
 
   def starting_wallet(money_to_add)
-    @wallet = Wallet.add(money_to_add)
+    Wallet.add(money_to_add)
   end
 
   def self.back_to_wallet(ammount_to_add)
