@@ -40,9 +40,10 @@ class Player
 
   def player_wallet_start
     test = Wallet.new
-    # puts "How much money are you starting with to play today?"
+    puts "How much money are you starting with to play today?"
     # user_wallet = gets.chomp.to_i
     @wallet = test.starting_wallet(1000)
+    new_wallet
     puts "Awesome #{@player_name}! You now have $#{@wallet} in your wallet."
   end
   

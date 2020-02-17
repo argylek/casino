@@ -1,24 +1,27 @@
 require_relative 'deck_of_cards'
 require_relative 'wallet'
 require_relative 'player'
+require_relative 'visuals'
 
 class HighLow
-  attr_accessor :player
+  attr_accessor :wallet, :player
 
-  def initialize(player)
+  def initialize(main_player)
     @deck = Deck.new
     @total_bet = 0
     @house_bet = 0
     @user_bet = 0
     @double_or_nothing = false
     @play_again = true
-    @player = player
+    @player = main_player
+    main_menu
   end
 
   def main_menu
     loop do
       game_menu
       game_menu_choice = gets.chomp.to_i
+      @player.wallet = @player.wallet
       case game_menu_choice
         when 1
           @play_again = true
@@ -26,13 +29,14 @@ class HighLow
           high_low_game
           end
           @double_or_nothing = false
-          @player.wallet = Wallet.back_to_wallet(@total_bet)
         when 2
           puts Wallet.check_wallet
         when 3
           break
         else
+          Visuals.seperator
           puts "That wasn't one of the options"
+          Visuals.seperator
       end
     end
   end
@@ -53,20 +57,26 @@ class HighLow
   end
 
   def game_menu
-    # puts "Welcome #{player_name} to the High or Low game!"
+    Visuals.fancy_seperator
+    puts "Welcome #{@player.player_name} to the High or Low game!"
+    Visuals.fancy_seperator
     puts "1) Play High or Low"
     puts "2) Check my Current Balance"
     puts "3) Go back to the Casino Floor"
+    Visuals.fancy_seperator
   end
+
   def card_setup
     @deck.shuffle
     down = @deck.draw_card
     up = @deck.draw_card
     @up_card = "#{up.rank}#{up.suit}"
     @down_card = "#{down.rank}#{down.suit}"
-    @up_value = up.value
-    @down_value = down.value
+    @up_value = up.value.to_i
+    @down_value = down.value.to_i
+    Visuals.seperator
     @cards = "The face down card was:#{@down_card}, the face up card was:#{@up_card}."
+    Visuals.seperator
   end
 
   def game_start
@@ -74,27 +84,33 @@ class HighLow
     # puts "down is #{down.rank}#{down.suit}" -- this is here for test purposes to make sure the cards are different
     puts "Two cards are on the table."
     puts "One face-up and one face-down"
+    Visuals.fancy_seperator
     puts "and one face-up is the #{@up_card}"
   end
 
   def house_match_bet
-    @house_bet = @user_bet
-    @total_bet = @house_bet + @user_bet
+    @total_bet = @user_bet*2
     puts "The house has matched your bet of $#{@user_bet}. As is customary."
+    Visuals.seperator
   end
 
   def player_bet
-    wallet = @player.wallet
+    Visuals.seperator
     bet_break = false
-    until bet_break == true
-      puts "Your wallet currently has $#{wallet}"
+    while bet_break == false
+      puts "Your wallet currently has $#{@player.wallet}"
       puts "How much would you like to bet?"
+      Visuals.seperator
       @user_bet = gets.chomp.to_i
-      if @user_bet > wallet
+      if @user_bet > @player.wallet
+        Visuals.fancy_seperator
         puts "You don't have that much to bet."
-      else
-        @player.wallet = Wallet.subtract(@user_bet)
-        puts "You have $#{@user_bet} on the table."
+        Visuals.fancy_seperator
+      else @user_bet <= @player.wallet
+        @player.wallet = @player.wallet - @user_bet
+        Visuals.fancy_seperator
+        puts "You have bet $#{@user_bet}"
+        Visuals.fancy_seperator
         bet_break = true
       end
     end
@@ -102,7 +118,9 @@ class HighLow
 
   def player_guess_menu
     puts "Moment of truth -- "
+    Visuals.seperator
     puts "Remember the face up card is the #{@up_card}"
+    Visuals.fancy_seperator
     puts "Is the face-down card higher or lower than the face-up card"
     puts "1) Higher"
     puts "2) Lower"
@@ -139,6 +157,7 @@ class HighLow
   end
 
   def player_guess
+    Visuals.fancy_seperator
     puts "There is $#{@total_bet} on the table."
     puts "ALL BETS ARE CLOSED"
     break_condition = false
@@ -167,6 +186,7 @@ class HighLow
   def user_lose
     puts "Oh no! You just lost the pot of! $#{@total_bet}"
     @total_bet = 0
+    @player.wallet = @player.wallet
     @play_again = false
   end
 
@@ -178,7 +198,7 @@ class HighLow
 
   def double_or_nothing
     break_condition = false
-    while break_condition == false
+    until break_condition == true
       puts "Would you like to go double or nothing? Y/N"
       user_input = gets.chomp.to_s
       user_conformed_input = user_input.upcase!
@@ -190,6 +210,7 @@ class HighLow
         break_condition = true
       when "N"
         @play_again = false
+        @player.wallet = Wallet.back_to_wallet(@total_bet)
         break_condition = true
       else
         puts "that wasn't an option"
@@ -202,5 +223,5 @@ end
 
 # player = Player.new
 # test = HighLow.new(player)
-# test.main_menu
+# # test.main_menu
 # Wallet.check_wallet

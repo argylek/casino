@@ -1,7 +1,7 @@
 
 class Slots
 
-  def initialize
+  def initialize(player)
     @cash = Wallet.new
   end
   
