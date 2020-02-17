@@ -1,5 +1,7 @@
 class Card
   # Getter and Setter methods for rank, suit and color
+
+  #added card value and seperate blackjack value to play various games with
   attr_accessor :rank, :suit, :color, :value, :blackjack
   # Gets called when you call the new method to create an instance
   # card = Card.new('10', 'K', 'Black')

@@ -1,8 +1,9 @@
 class Visuals
   def self.seperator
-    puts "*************"
+    puts '*************'
   end
+
   def self.fancy_seperator
-    puts "^*^*^*^*^*^*"
+    puts '^*^*^*^*^*^*'
   end
 end

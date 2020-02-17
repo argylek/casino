@@ -7,9 +7,8 @@ class Player
     start
   end
 
-
   def start
-    puts "Welcome to the Ruby Casino!"
+    puts 'Welcome to the Ruby Casino!'
     player_name_start
     player_age_start
     player_wallet_start
@@ -19,38 +18,36 @@ class Player
     puts
     puts "Hello, Let's get your information set up."
     puts
-    puts "Create your own username to play:"
+    puts 'Create your own username to play:'
     @player_name = gets.strip
   end
 
   def player_age_start
     puts
-    puts "What is your age?"
+    puts 'What is your age?'
     @player_age = gets.chomp.to_i
     if @player_age >= 21
-      
+
     elsif @player_age <= 20
       puts "I think you're too young to play"
       exit
     else
-      puts "Error: Age error"
+      puts 'Error: Age error'
     end
-  # @ << {username: new_player_name, age: new_player_age}
+    # @ << {username: new_player_name, age: new_player_age}
   end
 
   def player_wallet_start
     test = Wallet.new
-    puts "How much money are you starting with to play today?"
+    puts 'How much money are you starting with to play today?'
     # user_wallet = gets.chomp.to_i
     @wallet = test.starting_wallet(1000)
     new_wallet
     puts "Awesome #{@player_name}! You now have $#{@wallet} in your wallet."
   end
-  
+
   def new_wallet
     @wallet = 1000
   end
-
 end
 # player = Player.new
-

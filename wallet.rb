@@ -3,12 +3,11 @@ require_relative 'player'
 class Wallet
   attr_accessor :wallet
 
-  def initialize
-  end
+  def initialize; end
 
   def self.add(ammount)
     current_wallet = @wallet.to_i
-    @wallet =  current_wallet + ammount.to_i
+    @wallet = current_wallet + ammount.to_i
   end
 
   def self.subtract(ammount)
@@ -17,7 +16,7 @@ class Wallet
   end
 
   def self.check_wallet
-    puts "*************"
+    puts '*************'
     puts "You have $#{@wallet} in your wallet."
   end
 
@@ -33,7 +32,7 @@ class Wallet
     elsif ammount_to_add == 0
       Wallet.check_wallet
     else
-      puts "wallet error"
+      puts 'wallet error'
     end
   end
 end
@@ -44,5 +43,5 @@ end
 # Wallet.add(10)
 # Wallet.check_wallet
 # Wallet.subtract(10)
-# Wallet.check_wallet 
+# Wallet.check_wallet
 # Wallet.back_to_wallet(2000)
