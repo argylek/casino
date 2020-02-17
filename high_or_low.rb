@@ -1,4 +1,4 @@
- require_relative 'deck_of_cards'
+require_relative 'deck_of_cards'
 require_relative 'wallet'
 require_relative 'player'
 require_relative 'visuals'
@@ -113,7 +113,7 @@ class HighLow
         Visuals.fancy_seperator
         bet_break = true
       else
-        puts "Betting error -- please check code"
+        puts 'Betting error -- please check code'
       end
       @wallet = updated_wallet
     end
@@ -124,7 +124,7 @@ class HighLow
     Visuals.seperator
     puts "The house has matched your bet of $#{@user_bet}."
     sleep 1
-    puts "As is customary."
+    puts 'As is customary.'
     sleep 2
   end
 
@@ -208,9 +208,10 @@ class HighLow
 
   def double_the_bet
     current_bet = @total_bet
-    @total_bet = current_bet*2
+    @total_bet = current_bet * 2
     puts 'The pot has been doubled'
   end
+
   def total_bet_zeroed
     @total_bet = 0
   end

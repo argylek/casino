@@ -1,4 +1,5 @@
 require_relative 'wallet'
+require_relative 'visuals'
 
 class Player
   attr_accessor :wallet, :player_name, :player_age
@@ -43,7 +44,9 @@ class Player
     # user_wallet = gets.chomp.to_i
     @wallet = @wallet_class.starting_wallet(1000)
     new_wallet
+    Visuals.fancy_seperator
     puts "Awesome #{@player_name}! You now have $#{@wallet} in your wallet."
+    Visuals.fancy_seperator
   end
 
   def new_wallet

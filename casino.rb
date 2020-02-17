@@ -33,7 +33,7 @@ class CasinoMenus
         highlow = HighLow.new(@player)
       # highlow.main_menu
       when 3
-        Wallet.check_wallet
+        @player.check_wallet
       when 4
         @player.new_wallet
       when 5
