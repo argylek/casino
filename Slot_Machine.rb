@@ -1,7 +1,7 @@
 require_relative 'wallet'
 require_relative 'player'
  
-
+test
 class Slots
   attr_accessor = :player
   attr_accessor = :wallet
