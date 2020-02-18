@@ -18,8 +18,8 @@ def initialize(player)
 end
 def main_menu_text
 		puts "Hey #{@player.player_name}, Welcome to the BlackJack Area!"
-		Visuals.fancy_seperator
-		puts "What woud you like to do?"
+		Visuals.fancy_separator
+		puts "What would you like to do?"
 		puts "1) Play BlackJack"
 		puts "2) Check Wallet"
 		puts "3) Go back to the casino floor"
@@ -34,17 +34,17 @@ def place_bet
 		bet_break = false
 		while bet_break == false
 			Wallet.check_wallet
-			Visuals.seperator
+			Visuals.separator
 			puts "How much do you want to bet?"
-			Visuals.seperator
+			Visuals.separator
 			@user_bet = gets.chomp.to_i
 			if @user_bet > @wallet
-				Visuals.fancy_seperator
+				Visuals.fancy_separator
 				puts "You don't have that much to bet."
-				Visuals.fancy_seperator
+				Visuals.fancy_separator
 			elsif @user_bet <= @wallet
 				updated_wallet = Wallet.subtract(@user_bet)
-				Visuals.fancy_seperator
+				Visuals.fancy_separator
 				puts "You have bet $#{@user_bet}"
 				bet_break = true
 			else
@@ -83,9 +83,9 @@ def game_menu_text
 	puts "You've arrived at the BlackJack Table"
 	puts "The dealer shuffles the deck"
 	puts "The dealer hands you your cards"
-	Visuals.seperator
+	Visuals.separator
 	puts "The current bet is $#{@user_bet}"
-	Visuals.seperator
+	Visuals.separator
 	puts "What would you like to do?"
 	puts "1) Check my cards and their values"
 	puts "2) Check the dealers cards and their values"
@@ -124,7 +124,7 @@ end
 
 def hit
 	@player_hand.hit!(@deck)
-	Visuals.fancy_seperator
+	Visuals.fancy_separator
 	puts 'The Dealer hands you another card'
 end
 
@@ -160,5 +160,5 @@ def inspect
 end
 end
 
-player = Player.new
-blackjack = BlackJack.new(player)
+# player = Player.new
+# blackjack = BlackJack.new(player)

@@ -22,7 +22,7 @@ class HighLow
     puts "Welcome #{@player.player_name} to the High or Low game!"
     loop do
       game_menu
-      Visuals.fancy_seperator
+      Visuals.fancy_separator
       game_menu_choice = gets.chomp.to_i
       case game_menu_choice
       when 1
@@ -34,9 +34,9 @@ class HighLow
       when 3
         break
       else
-        Visuals.seperator
+        Visuals.separator
         puts "That wasn't one of the options"
-        Visuals.seperator
+        Visuals.separator
       end
     end
     update_wallet
@@ -64,11 +64,11 @@ class HighLow
   end
 
   def game_menu
-    Visuals.fancy_seperator
+    Visuals.fancy_separator
     puts '1) Play High or Low'
     puts '2) Check my Current Balance'
     puts '3) Go back to the Casino Floor'
-    Visuals.fancy_seperator
+    Visuals.fancy_separator
   end
 
   def card_setup
@@ -79,9 +79,9 @@ class HighLow
     @down_card = "#{down.rank}#{down.suit}"
     @up_value = up.value.to_i
     @down_value = down.value.to_i
-    Visuals.seperator
+    Visuals.separator
     @cards = "The face down card was:#{@down_card}, the face up card was:#{@up_card}."
-    Visuals.seperator
+    Visuals.separator
   end
 
   def game_start
@@ -89,28 +89,28 @@ class HighLow
     # puts "down is #{down.rank}#{down.suit}" -- this is here for test purposes to make sure the cards are different
     puts 'The Dealer puts two cards on the table.'
     puts 'One face-up and one face-down'
-    Visuals.fancy_seperator
+    Visuals.fancy_separator
     puts "and one face-up is the #{@up_card}"
   end
 
   def player_bet
-    Visuals.seperator
+    Visuals.separator
     bet_break = false
     while bet_break == false
       Wallet.check_wallet
       wallet = @wallet
       puts 'How much would you like to bet?'
-      Visuals.seperator
+      Visuals.separator
       @user_bet = gets.chomp.to_i
       if @user_bet > wallet
-        Visuals.fancy_seperator
+        Visuals.fancy_separator
         puts "You don't have that much to bet."
-        Visuals.fancy_seperator
+        Visuals.fancy_separator
       elsif @user_bet <= wallet
         updated_wallet = Wallet.subtract(@user_bet)
-        Visuals.fancy_seperator
+        Visuals.fancy_separator
         puts "You have bet $#{@user_bet}"
-        Visuals.fancy_seperator
+        Visuals.fancy_separator
         bet_break = true
       else
         puts 'Betting error -- please check code'
@@ -121,17 +121,16 @@ class HighLow
 
   def house_match_bet
     @total_bet = @user_bet * 2
-    Visuals.seperator
+    Visuals.separator
     puts "The house has matched your bet of $#{@user_bet}."
     sleep 1
     puts 'As is customary.'
-    sleep 2
   end
 
   def player_guess_menu
-    Visuals.fancy_seperator
+    Visuals.fancy_separator
     puts "Remember the face up card is the #{@up_card}"
-    Visuals.seperator
+    Visuals.separator
     puts 'Moment of truth -- '
     sleep 1
     puts 'Is the face-down card higher or lower than the face-up card'
@@ -140,7 +139,7 @@ class HighLow
   end
 
   def higher_win_conditions
-    Visuals.seperator
+    Visuals.separator
     if @down_value == @up_value
       puts "#{@cards} They were equal, you win!"
       user_win
@@ -151,13 +150,13 @@ class HighLow
       puts "#{@cards} You win!"
       user_win
     else
-      puts 'higher_win_condidtions error'
+      puts 'higher_win_conditions error'
     end
-    Visuals.seperator
+    Visuals.separator
   end
 
   def lower_win_conditions
-    Visuals.seperator
+    Visuals.separator
     if @down_value == @up_value
       puts "#{@cards} They were equal, you win!"
       user_win
@@ -168,13 +167,13 @@ class HighLow
       puts "#{@cards} You win!"
       user_win
     else
-      puts 'lower_win_condidtions error'
+      puts 'lower_win_conditions error'
     end
-    Visuals.seperator
+    Visuals.separator
   end
 
   def player_guess
-    Visuals.fancy_seperator
+    Visuals.fancy_separator
     puts "There is $#{@total_bet} in the pot."
     puts 'ALL BETS ARE CLOSED'
     break_condition = false

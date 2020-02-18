@@ -14,7 +14,7 @@ class CasinoMenus
     puts 'Which game would you like to play?'
     puts '1) Slots!'
     puts '2) High or Low'
-    puts '3) Check Current Wallet Ammount'
+    puts '3) Check Current Wallet Amount'
     puts '4) Wallet Reset to $1000'
     puts '5) Exit the Casino'
   end
