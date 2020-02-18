@@ -5,14 +5,14 @@ class Wallet
 
   def initialize; end
 
-  def self.add(ammount)
+  def self.add(amount)
     current_wallet = @wallet.to_i
-    @wallet = current_wallet + ammount.to_i
+    @wallet = current_wallet + amount.to_i
   end
 
-  def self.subtract(ammount)
+  def self.subtract(amount)
     current_wallet = @wallet.to_i
-    @wallet = current_wallet - ammount.to_i
+    @wallet = current_wallet - amount.to_i
   end
 
   def self.check_wallet
@@ -24,12 +24,12 @@ class Wallet
     Wallet.add(money_to_add)
   end
 
-  def self.back_to_wallet(ammount_to_add)
-    @wallet = Wallet.add(ammount_to_add)
-    if ammount_to_add >= 1
-      puts "You've added @#{ammount_to_add} to your wallet!"
+  def self.back_to_wallet(amount_to_add)
+    @wallet = Wallet.add(amount_to_add)
+    if amount_to_add >= 1
+      puts "You've added @#{amount_to_add} to your wallet!"
       Wallet.check_wallet
-    elsif ammount_to_add == 0
+    elsif amount_to_add == 0
       Wallet.check_wallet
     else
       puts 'wallet error'

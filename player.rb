@@ -44,9 +44,9 @@ class Player
     # user_wallet = gets.chomp.to_i
     @wallet = @wallet_class.starting_wallet(1000)
     new_wallet
-    Visuals.fancy_seperator
+    Visuals.fancy_separator
     puts "Awesome #{@player_name}! You now have $#{@wallet} in your wallet."
-    Visuals.fancy_seperator
+    Visuals.fancy_separator
   end
 
   def new_wallet
@@ -57,11 +57,9 @@ class Player
     puts "$#{@wallet}.00"
   end
 
-  def back_to_wallet(ammount)
-  Wallet.back_to_wallet(ammount)
+  def back_to_wallet(amount)
+  Wallet.back_to_wallet(amount)
   end
-
-
 
 end
 # player = Player.new

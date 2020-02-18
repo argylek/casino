@@ -14,7 +14,7 @@ class CasinoMenus
     puts 'Which game would you like to play?'
     puts '1) Slots!'
     puts '2) High or Low'
-    puts '3) Check Current Wallet Ammount'
+    puts '3) Check Current Wallet Amount'
     puts '4) Wallet Reset to $1000'
     puts '5) Exit the Casino'
   end
@@ -28,7 +28,7 @@ class CasinoMenus
       case @game_choice
       when 1
         @slots = Slots.new(@player)
-        @slots.run_slots
+        # @slots.run_slots
       when 2
         highlow = HighLow.new(@player)
       # highlow.main_menu
