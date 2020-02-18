@@ -3,11 +3,6 @@ require_relative 'wallet'
 require_relative 'player'
 require_relative 'visuals'
 
-
-
-
-
-
 class HighLow
   attr_accessor :wallet, :player
 
