@@ -28,7 +28,7 @@ class CasinoMenus
       case @game_choice
       when 1
         @slots = Slots.new(@player)
-        @slots.run_slots
+        # @slots.run_slots
       when 2
         highlow = HighLow.new(@player)
       # highlow.main_menu
