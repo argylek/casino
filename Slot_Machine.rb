@@ -1,14 +1,12 @@
 require_relative 'wallet'
 require_relative 'player'
  
-test
 class Slots
   attr_accessor = :player
   attr_accessor = :wallet
 
   def initialize(player)
     @player = player
-    @wheel_spin = [@row1, @row2, @row3, @row4]
     @wallet = @player.wallet
     slots_inputs
   end
@@ -75,29 +73,32 @@ class Slots
         when 2
           puts "Your wallet has $#{@wallet}.00"
         when 3
+          @player.wallet = @wallet
+          puts "#{@wallet}"
           slots_break = true
         else
           puts "Invalid Choice. Try again!" 
       end
     end
-    update_wallet
+    
   end
 
   def run_slots
-      @row1 = ['1', '2', '3', '4'
+      @row1 = [1, 2, 3, 4
       ].sample
 
-      @row2 = ['1', '2', '3', '4'
+      @row2 = [1, 2, 3, 4
       ].sample
 
-      @row3 = ['1', '2', '3', '4' 
+      @row3 = [1, 2, 3, 4 
       ].sample
 
-      @row4 = ['1', '2', '3', '4'
+      @row4 = [1, 2, 3, 4
       ].sample
       
       puts "#{@wallet - 1}"
       puts "#{@row1} #{@row2} #{@row3} #{@row4}"
+      @wheel_spin = [@row1, @row2, @row3, @row4]
   end
 
 

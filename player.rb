@@ -54,7 +54,7 @@ class Player
   end
 
   def check_wallet
-  Wallet.check_wallet
+    puts "$#{@wallet}.00"
   end
 
   def back_to_wallet(ammount)

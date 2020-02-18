@@ -1,5 +1,5 @@
 require_relative 'player'
-require_relative 'slot_machine'
+require_relative 'Slot_Machine'
 require_relative 'high_or_low'
 require_relative 'player'
 require_relative 'visuals'
