@@ -1,7 +1,6 @@
 require_relative 'wallet'
 require_relative 'player'
- 
-test
+
 class Slots
   attr_accessor = :player
   attr_accessor = :wallet
@@ -15,7 +14,7 @@ class Slots
   
 
 # need to figure out how to get the win statements to run
-# currently only displays the else statment "Sorry, Try again", even if you get a winning 4 row of numbers
+# currently only displays the else statement "Sorry, Try again", even if you get a winning 4 row of numbers
 # it does track the wallet -$1 every time you play
 # the check wallet function works here as well
 # the wallet does not update to the casino menu when you select check wallet in that menu
